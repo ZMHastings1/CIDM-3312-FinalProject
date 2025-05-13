@@ -5,5 +5,5 @@
 -All entity classes have been made
 -Data seeded
 -Db has been made and Ticket page has been scaffolded
--Webpage works, but comments do not show on the home page. Code needs to be changed to display Comments.
+-Webpage works, but comments do not show on the Tickets/Index page. Code needs to be changed to display Comments.
 ---END---
