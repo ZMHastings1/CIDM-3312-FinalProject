@@ -1,0 +1,62 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "IT Help Desk";
+}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" asp-page="/Index">Help Desk</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" asp-page="/Tickets/Index">Tickets</a></li>
+        <li class="nav-item"><a class="nav-link" asp-page="/Tickets/Create">New Ticket</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="bg-light py-5 mb-4">
+  <div class="container">
+    <h1 class="display-4">Welcome to the IT Help Desk</h1>
+    <p class="lead">Submit issues, track tickets, and get support fast.</p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <div class="card text-white bg-info">
+        <div class="card-body">
+          <h5 class="card-title">Open Tickets</h5>
+          <p class="card-text fs-3">@(Model.Ticket?.Count(t => t.Status == "Open") ?? 0)</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-white bg-success">
+        <div class="card-body">
+          <h5 class="card-title">Technicians</h5>
+          <p class="card-text fs-3">@Model.Technicians.Count()</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-white bg-warning">
+        <div class="card-body">
+          <h5 class="card-title">Users</h5>
+          <p class="card-text fs-3">@Model.Users.Count()</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <footer class="footer bg-light text-center py-3 mt-4">
+    <div class="container">
+        <span class="text-muted">© 2025 IT Help Desk</span>
+    </div>
+    </footer>
