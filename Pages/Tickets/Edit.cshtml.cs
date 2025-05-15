@@ -13,14 +13,20 @@ namespace CIDM_3312_FinalProject.Pages_Tickets
     public class EditModel : PageModel
     {
         private readonly CIDM_3312_FinalProject.Models.TicketDbContext _context;
+        private readonly ILogger<EditModel> _logger;
 
-        public EditModel(CIDM_3312_FinalProject.Models.TicketDbContext context)
+        public EditModel(CIDM_3312_FinalProject.Models.TicketDbContext context, ILogger<EditModel> logger)
         {
+            _logger = logger;
             _context = context;
         }
 
         [BindProperty]
         public Ticket Ticket { get; set; } = default!;
+
+        [BindProperty]
+        public Comment NewComment { get; set; } = default!;
+
         
         public SelectList TechnicianList { get; set; } = default!;
 
@@ -47,6 +53,12 @@ namespace CIDM_3312_FinalProject.Pages_Tickets
         {
             if (!ModelState.IsValid)
             {
+                var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var e in allErrors)
+                {
+                    _logger.LogError($"Error: {e.ErrorMessage}");
+                }
+
                 return Page();
             }
 
@@ -54,6 +66,9 @@ namespace CIDM_3312_FinalProject.Pages_Tickets
 
             try
                 {
+                    NewComment.TicketID = Ticket.TicketID;
+                    NewComment.PostedDate = DateTime.Now;
+                    _context.Comments.Add(NewComment);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

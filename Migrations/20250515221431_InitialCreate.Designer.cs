@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CIDM_3312_FinalProject.Migrations
 {
     [DbContext(typeof(TicketDbContext))]
-    [Migration("20250515035232_FixOptionalMigration2")]
-    partial class FixOptionalMigration2
+    [Migration("20250515221431_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
